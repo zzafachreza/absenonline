@@ -48,7 +48,7 @@ export default function ({ navigation, route }) {
   };
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity
+    <TouchableOpacity onPress={() => navigation.navigate('ListDetail', item)}
       style={{
         padding: 10,
         margin: 10,
@@ -92,7 +92,7 @@ export default function ({ navigation, route }) {
             style={{
               fontSize: windowWidth / 30,
               fontFamily: fonts.secondary[600],
-              color: colors.black,
+              color: colors.success,
             }}>
             MASUK
           </Text>
@@ -100,7 +100,7 @@ export default function ({ navigation, route }) {
             style={{
               fontSize: windowWidth / 30,
               textAlign: 'center',
-              color: colors.secondary,
+              color: colors.success,
             }}>
             {item.jam_masuk}
           </Text>
@@ -136,7 +136,7 @@ export default function ({ navigation, route }) {
             style={{
               fontSize: windowWidth / 30,
               fontFamily: fonts.secondary[600],
-              color: colors.black,
+              color: colors.danger,
             }}>
             PULANG
           </Text>
@@ -144,7 +144,7 @@ export default function ({ navigation, route }) {
             style={{
               fontSize: windowWidth / 30,
               textAlign: 'center',
-              color: colors.secondary,
+              color: colors.danger,
             }}>
             {item.jam_pulang}
           </Text>

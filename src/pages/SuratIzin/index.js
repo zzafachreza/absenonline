@@ -204,7 +204,7 @@ export default function SuratIzin({ navigation }) {
       .post('https://absen.okeadmin.com/api/absen_izin_add.php', data)
       .then(x => {
         setLoading(false);
-        alert('Surat Izin Berhasil Di Kirim');
+        alert('Surat ' + data.tipe + ' Berhasil di Upload!');
         console.log('respose server', x);
         navigation.navigate('MainApp');
       });

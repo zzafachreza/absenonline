@@ -157,7 +157,7 @@ export default function Register({ navigation }) {
           labelColor={isEnabled ? colors.white : colors.primary}
           colorIcon={isEnabled ? colors.white : colors.primary}
           borderColor={isEnabled ? colors.white : colors.primary}
-          label="NIP"
+          label="NIK"
           iconname="card"
           value={data.nip}
           onChangeText={value =>

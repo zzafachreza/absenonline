@@ -20,6 +20,7 @@ import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import { showMessage } from 'react-native-flash-message';
 import GetLocation from 'react-native-get-location';
 import { getDistance, convertDistance } from 'geolib';
+import { WebView } from 'react-native-webview';
 export default function Masuk({ navigation, route }) {
   const items = route.params.jenis;
   // console.log('hasil sebelumya', items);
@@ -29,6 +30,7 @@ export default function Masuk({ navigation, route }) {
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
   const [toleransi, setToleransi] = useState(0);
+
   const [data, setData] = useState({
     nama_lengkap: null,
     email: null,
@@ -139,7 +141,7 @@ export default function Masuk({ navigation, route }) {
           .post('https://absen.okeadmin.com/api/absen_add.php', kirim)
           .then(x => {
             setLoading(false);
-            alert('Absensi Pulang Berhasil Di Kirim');
+            alert('Berhasil absen pulang!');
             console.error('respose server', x.data);
             navigation.navigate('MainApp');
           });
@@ -147,6 +149,8 @@ export default function Masuk({ navigation, route }) {
 
     }
   };
+
+  const webURL = `https://absen.okeadmin.com/transaksi/absen?latitude=${latitude}&longitude=${longitude}`;
   return (
     <SafeAreaView style={styles.page}>
       {/* <Image
@@ -193,20 +197,25 @@ export default function Masuk({ navigation, route }) {
           {/* <Text>{data.longitude}</Text> */}
         </View>
       </View>
+
+      <WebView source={{ uri: `${webURL}` }} style={{ height: windowHeight / 2 }} />
       <View
         style={{
-          flex: 1,
+          opacity: 0.8,
+          width: '100%',
+          height: 300,
+          borderRadius: 10,
           justifyContent: 'center',
           alignItems: 'center',
         }}>
         {/* {data.dinas_luar == "YA" && route.params.jenis == "KANTOR" && ( */}
-
+        {/* 
         <Text
           style={{
             fontFamily: fonts.secondary[600],
             fontSize: windowWidth / 30,
             color: colors.zavalabs
-          }}>{items} - {jarak} Meter</Text>
+          }}>{items} - {jarak} Meter</Text> */}
 
 
         {/* )} */}
@@ -225,8 +234,8 @@ export default function Masuk({ navigation, route }) {
           <View
             style={{
               backgroundColor: colors.white,
-              width: 250,
-              height: 350,
+              width: 150,
+              height: 200,
               justifyContent: 'center',
               alignItems: 'center',
               borderRadius: 10,
@@ -239,7 +248,10 @@ export default function Masuk({ navigation, route }) {
                     ? 'https://zavalabs.com/nogambar.jpg'
                     : data.foto,
               }}
-              style={{ width: 250, height: 350 }}
+              style={{
+                width: 150,
+                height: 200,
+              }}
             />
           </View>
           <MyGap jarak={10} />

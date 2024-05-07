@@ -9,6 +9,7 @@ import {
   Dimensions,
   ImageBackground,
   SafeAreaView,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import { colors } from '../../utils/colors';
 import { fonts, windowWidth } from '../../utils/fonts';
@@ -148,6 +149,16 @@ export default function Login({ navigation }) {
               onPress={masuk}
             />
           )}
+
+
+          <TouchableWithoutFeedback onPress={() => navigation.navigate('Register')}>
+            <Text style={{
+              fontFamily: fonts.secondary[600],
+              fontSize: 15,
+              marginTop: 10,
+              textAlign: 'center'
+            }}>Belum memiliki akun ? Daftar disini </Text>
+          </TouchableWithoutFeedback>
         </View>
       </ScrollView>
       {loading && (
